@@ -27,7 +27,7 @@ def handle_message(message):
         bot.reply_to(message, "Please provide a valid URL.")
 
 # Define a route for the webhook
-@app.route('/' + os.getenv('6707834673:AAGcTUt1a8iWWHuNJAwvF5zRtfI3VFkNue4'), methods=['POST'])
+@app.route('/' + os.getenv('token'), methods=['POST'])
 def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     return "!", 200
@@ -36,7 +36,7 @@ def getMessage():
 @app.route("/set_webhook", methods=['GET', 'POST'])
 def set_webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://your-app-url/' + os.getenv('6707834673:AAGcTUt1a8iWWHuNJAwvF5zRtfI3VFkNue4'))
+    bot.set_webhook(url='https://your-app-url/' + os.getenv('token'))
     return "Webhook was set", 200
 
 # Run the Flask app
